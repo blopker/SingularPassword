@@ -1,8 +1,11 @@
 $(document).ready(function() {
-    $("#passwordform").keyup(function(e) {
+	$('#passwordform').keypress(function(e) {
 		if (e.keyCode == 13) {
             return false;
         }
+	});
+
+    $("#passwordform").keyup(function(e) {
 		passwordEntered($("#passwordbox").val())
     });
 
@@ -10,5 +13,9 @@ $(document).ready(function() {
 });
 
 function passwordEntered(password){
-	$("#results").append("<li>"+password+"</li>")
+	if (password.length > 0){
+		$.post("/newpass", {hash: Sha1.hash(password)}, function(response){
+			$("#results").replaceWith("<li>That has been entered "+response+" times.</li>")
+		});
+	}
 }

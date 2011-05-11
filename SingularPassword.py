@@ -11,6 +11,10 @@ from tornado.options import define, options
 
 define("port", default=8888, help="run on the given port", type=int)
 
+conn = connect('singular.db')
+curs = conn.cursor()
+#hashes = conn.execute('select * from passwords').fetchall()
+
 
 class Application(tornado.web.Application):
     def __init__(self):
@@ -27,13 +31,13 @@ class Application(tornado.web.Application):
 class MainHandler(tornado.web.RequestHandler):
     @tornado.web.asynchronous
     def get(self):
-		conn = connect('singular.db')
-		hashes = conn.execute('select * from passwords').fetchall()
-		self.render('index.html',items=hashes)
+		self.render('index.html')
 
 class PasswordHandler(tornado.web.RequestHandler):
 	def post(self):
-		self.write("you wrote " + self.get_argument("body"))
+		count = len(self.get_argument("hash"))
+		response = str(count)
+		self.write(response)
 
 def main():
 	tornado.options.parse_command_line()
