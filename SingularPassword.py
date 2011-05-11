@@ -35,9 +35,8 @@ class MainHandler(tornado.web.RequestHandler):
 
 class PasswordHandler(tornado.web.RequestHandler):
 	def post(self):
-		count = len(self.get_argument("hash"))
-		response = str(count)
-		self.write(response)
+		hashh = self.get_argument("hash")
+		self.write(hashh)
 
 def main():
 	tornado.options.parse_command_line()
