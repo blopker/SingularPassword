@@ -35,8 +35,17 @@ class MainHandler(tornado.web.RequestHandler):
 
 class PasswordHandler(tornado.web.RequestHandler):
 	def post(self):
-		hashh = self.get_argument("hash")
-		self.write(hashh)
+		passHash = self.get_argument("hash")
+		try:
+			count = curs.execute("""select count from passwords where hash = ?""",(passHash,)).fetchone()[0]
+			curs.execute("""update passwords set count = count + 1 where hash = ?""",(passHash,))
+			count = count + 1
+		except:
+			row = (passHash, 1, 0)
+			curs.execute("""insert into passwords values (?,?,?)""", row)
+			count = 1
+		conn.commit()
+		self.write(str(count))
 
 def main():
 	tornado.options.parse_command_line()

@@ -11,7 +11,7 @@ import string
 conn = connect('singular.db')
 c = conn.cursor()
 c.execute('''create table passwords
-(hash text unique, count integer, isdictionary integer)''')
+(hash text primary key, count integer default 0, isdictionary integer)''')
 conn.commit()
 
 #Seed the db with the alphabet.

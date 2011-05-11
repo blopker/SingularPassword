@@ -19,10 +19,13 @@ $(document).ready(function() {
 });
 
 function passwordEntered(password){
-	if (password.length > 0){
 		var passHash = Sha1.hash(password);
 		$.post("/newpass", {hash: passHash}, function(response){
-			$("#results").replaceWith("<div id=results>'"+password+"' has been entered "+response+" times.</div>");
+			if (response === '1'){
+				var message = "You found a singular password!";			
+			} else {
+				var message = "That password has been entered " + response + " times.";
+			}
+			$("#results").replaceWith("<div id=results>"+message+"</div>");
 		});
-	}
 }
