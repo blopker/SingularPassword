@@ -1,7 +1,7 @@
 SingularPassword.com
 ====================
 
-This is the source code for SingularPassword.com
+The goal of this project is to spread secure password techniques.
 
 Dependencies
 ------------
