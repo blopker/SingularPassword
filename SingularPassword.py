@@ -9,7 +9,7 @@ from sqlite3 import connect
 
 from tornado.options import define, options
 
-define("port", default=8888, help="run on the given port", type=int)
+define("port", default=8889, help="run on the given port", type=int)
 
 conn = connect('singular.db')
 curs = conn.cursor()
