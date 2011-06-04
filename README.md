@@ -26,4 +26,4 @@ Then just start the server with:
 
 	python SingularPassword.py
 
-Go to http://localhost:8888 to use it!
+Go to http://localhost:8889 to use it!
