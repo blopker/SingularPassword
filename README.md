@@ -7,7 +7,7 @@ Dependencies
 ------------
 The only dependency right now is the python powered Tornado server.
 
-To install Tornado (linux only) type:
+To install Tornado (Debian only) type:
 
 	sudo apt-get install python-pycurl
 	pip install tornado
